@@ -5,12 +5,12 @@ return [
         '/' => ['controller' => 'HomeController', 'action' => 'index'],
         '/home' => ['controller' => 'HomeController', 'action' => 'index'],
         '/about' => ['controller' => 'AboutController', 'action' => 'index'],
-        '/login' => ['controller' => 'LoginController', 'action' => 'index'],
-        '/register' => ['controller' => 'RegisterController', 'action' => 'index'],
+        '/login' => ['controller' => 'AuthController', 'action' => 'login_view'],
+        '/register' => ['controller' => 'AuthController', 'action' => 'register_view'],
     ],
     'POST' => [
-        '/login' => ['controller' => 'LoginController', 'action' => 'login'],
-        '/register' => ['controller' => 'RegisterController', 'action' => 'register'],
+        '/login' => ['controller' => 'AuthController', 'action' => 'login_post'],
+        '/register' => ['controller' => 'AuthController', 'action' => 'register_post'],
     ],
 ];
 

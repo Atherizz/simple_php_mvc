@@ -1,10 +1,11 @@
 <?php
+
+require "core/auth.php";
+
 class HomeController {
     public function index() {
-        session_start();
-        if (!isset($_SESSION['user'])) {
-            header('Location: /login');
-        }
+        $middleware = new AuthMiddleware();
+        $middleware->requireLogin();
         require 'views/home.php';
     }
 }

@@ -6,7 +6,7 @@ class AuthController
     private $userModel;
     public function __construct()
     {
-        session_start();
+        // session_start();
         $this->userModel = new UserModel();
     }
     public function register_view()
@@ -52,5 +52,18 @@ class AuthController
                 exit;
             }
         }
+    }
+
+    public function logout() {
+          if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        
+        $_SESSION = [];
+        
+        session_destroy();
+        
+        header('Location: /login');
+        exit;
     }
 }

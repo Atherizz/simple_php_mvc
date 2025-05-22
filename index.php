@@ -1,12 +1,21 @@
 <?php
+session_start();
+
 $routes = require 'core/routes.php';
 
 define('BASE_PATH', dirname(__FILE__));
 
 spl_autoload_register(function ($class) {
-    $file = BASE_PATH . '/controllers/' . $class . '.php';
-    if (file_exists($file)) {
-        require $file;
+    $controllerFile = BASE_PATH . '/controllers/' . $class . '.php';
+    if (file_exists($controllerFile)) {
+        require $controllerFile;
+        return;
+    }
+    
+    $modelFile = BASE_PATH . '/models/' . $class . '.php';
+    if (file_exists($modelFile)) {
+        require $modelFile;
+        return;
     }
 });
 
@@ -17,7 +26,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 if (isset($routes[$method][$path])) {
     $controllerName = $routes[$method][$path]['controller'];
     $action = $routes[$method][$path]['action'];
-
+    
     if (class_exists($controllerName)) {
         $controller = new $controllerName();
         if (method_exists($controller, $action)) {

@@ -11,6 +11,7 @@ return [
     'POST' => [
         '/login' => ['controller' => 'AuthController', 'action' => 'login_post'],
         '/register' => ['controller' => 'AuthController', 'action' => 'register_post'],
+        '/logout' => ['controller' => 'AuthController', 'action' => 'logout'],
     ],
 ];
 
